@@ -1,40 +1,32 @@
 CREATE TABLE 'Album' (
-    'AlbumID' INTEGER,
+    'AlbumID' INTEGER PRIMARY KEY,
     'AlbumName' TEXT,
     'AlbumTypeID' INTEGER,
     'TitleTrackID' INTEGER,
     'CategoryID' TEXT,
-    PRIMARY KEY ('AlbumID'),
     FOREIGN KEY ('AlbumTypeID') REFERENCES 'AlbumTypes' ('AlbumTypeID'),
     FOREIGN KEY ('TitleTrackID') REFERENCES 'TitleTracks' ('TitleTrackID')
 );
 
 CREATE TABLE 'TitleTracks' (
-    'TitleTrackID' INTEGER,
-    'TitleTrackName' TEXT,
-    PRIMARY KEY ('TitleTrackID')
+    'TitleTrackID' INTEGER PRIMARY KEY,
+    'TitleTrackName' TEXT
 );
 
 CREATE TABLE 'AlbumTypes' (
-    'AlbumTypeID' INTEGER,
-    'AlbumTypeName' TEXT,
-    PRIMARY KEY ('AlbumTypeID')
+    'AlbumTypeID' INTEGER PRIMARY KEY,
+    'AlbumTypeName' TEXT
 );
 
-CREATE TABLE 'Artist' (
-    'ArtistID' INTEGER,
-    'ArtistName' TEXT,
-    PRIMARY KEY ('ArtistID')
-);
+CREATE TABLE 'Artist' ('ArtistID' INTEGER PRIMARY KEY, 'ArtistName' TEXT);
 
 CREATE TABLE 'Releases' (
-    'ReleaseID' INTEGER,
+    'ReleaseID' INTEGER PRIMARY KEY,
     'ReleaseDate' TEXT,
     'ReleaseTime' TEXT,
     'ArtistID' INTEGER,
     'AlbumID' INTEGER,
     'SourceID' INTEGER,
-    PRIMARY KEY ('ReleaseID'),
     FOREIGN KEY ('ArtistID') REFERENCES 'Artist' ('ArtistID'),
     FOREIGN KEY ('AlbumID') REFERENCES 'Album' ('AlbumID'),
     FOREIGN KEY ('SourceID') REFERENCES 'Sources' ('SourceID')
@@ -54,9 +46,8 @@ CREATE TABLE 'StreamingLinks' (
 );
 
 CREATE TABLE 'Sources' (
-    'SourceID' INTEGER,
+    'SourceID' INTEGER PRIMARY KEY,
     'SourceMonth' TEXT,
     'SourceYear' TEXT,
-    'SourceLink' TEXT,
-    PRIMARY KEY ('SourceID')
+    'SourceLink' TEXT
 );
